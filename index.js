@@ -19,7 +19,7 @@ app.post('/jarvis', async (req, res) => {
         messages: [{ role: 'user', content: userMessage }]
       }, {
         headers: {
-          'Authorization': `Bearer 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`, // <-- qui devi mettere la tua API Key OpenAI!
+          'Authorization': `Bearer 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`, // <-- qui devi mettere la tua API Key OpenAI!
           'Content-Type': 'application/json'
         }
       });
