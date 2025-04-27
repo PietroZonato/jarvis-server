@@ -19,7 +19,7 @@ app.post('/jarvis', async (req, res) => {
         messages: [{ role: 'user', content: userMessage }]
       }, {
         headers: {
-          'Authorization': `Bearer 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`, // <-- qui devi mettere la tua API Key OpenAI!
+          'Authorization': `Bearer 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`, 
           'Content-Type': 'application/json'
         }
       });
@@ -35,46 +35,22 @@ app.post('/jarvis', async (req, res) => {
           },
           shouldEndSession: false
         }
-        
-     try {
-  const aiResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
-    model: 'gpt-3.5-turbo',
-    messages: [{ role: 'user', content: userMessage }]
-  }, {
-    headers: {
-      'Authorization': `Bearer LA_TUA_API_KEY`,
-      'Content-Type': 'application/json'
+      });
+
+    } catch (error) {
+      console.error("Errore nella richiesta AI:", error.response?.data || error.message);
+      res.json({
+        version: "1.0",
+        response: {
+          outputSpeech: {
+            type: "PlainText",
+            text: "Mi dispiace, non riesco a rispondere ora."
+          },
+          shouldEndSession: false
+        }
+      });
     }
-  });
 
-  const aiReply = aiResponse.data.choices[0].message.content;
-
-  res.json({
-    version: "1.0",
-    response: {
-      outputSpeech: {
-        type: "PlainText",
-        text: aiReply
-      },
-      shouldEndSession: false
-    }
-  });
-
-} catch (error) {
-  console.error("Errore nella richiesta AI:", error.response?.data || error.message);
-  res.json({
-    version: "1.0",
-    response: {
-      outputSpeech: {
-        type: "PlainText",
-        text: "Mi dispiace, non riesco a rispondere ora."
-      },
-      shouldEndSession: false
-    }
-  });
-}
-
-    
   } else {
     res.json({
       version: "1.0",
