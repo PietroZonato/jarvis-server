@@ -1,4 +1,3 @@
-// index.js
 const express = require('express');
 const bodyParser = require('body-parser');
 const axios = require('axios');
@@ -19,7 +18,8 @@ app.post('/jarvis', async (req, res) => {
         messages: [{ role: 'user', content: userMessage }]
       }, {
         headers: {
-          'Authorization': `Bearer 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`, 
+          'Authorization': `Bearer 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`,
+          'OpenAI-Project': 'proj_ERabU7p2vpvDOPSi0L0M4Xm4',
           'Content-Type': 'application/json'
         }
       });
