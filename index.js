@@ -19,7 +19,7 @@ app.post('/jarvis', async (req, res) => {
         messages: [{ role: 'user', content: userMessage }]
       }, {
         headers: {
-          'Authorization': `Bearer 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`, 
+          'Authorization': `Bearer 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`, 
           'Content-Type': 'application/json'
         }
       });
