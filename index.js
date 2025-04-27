@@ -36,8 +36,31 @@ app.post('/jarvis', async (req, res) => {
           shouldEndSession: false
         }
         
-      });
-      catch (error) {
+     try {
+  const aiResponse = await axios.post('https://api.openai.com/v1/chat/completions', {
+    model: 'gpt-3.5-turbo',
+    messages: [{ role: 'user', content: userMessage }]
+  }, {
+    headers: {
+      'Authorization': `Bearer LA_TUA_API_KEY`,
+      'Content-Type': 'application/json'
+    }
+  });
+
+  const aiReply = aiResponse.data.choices[0].message.content;
+
+  res.json({
+    version: "1.0",
+    response: {
+      outputSpeech: {
+        type: "PlainText",
+        text: aiReply
+      },
+      shouldEndSession: false
+    }
+  });
+
+} catch (error) {
   console.error("Errore nella richiesta AI:", error.response?.data || error.message);
   res.json({
     version: "1.0",
