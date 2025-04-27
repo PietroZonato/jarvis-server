@@ -35,21 +35,23 @@ app.post('/jarvis', async (req, res) => {
           },
           shouldEndSession: false
         }
+        
       });
-
-    } catch (error) {
-      console.error(error.message);
-      res.json({
-        version: "1.0",
-        response: {
-          outputSpeech: {
-            type: "PlainText",
-            text: "Mi dispiace, non riesco a rispondere ora."
-          },
-          shouldEndSession: false
-        }
-      });
+      catch (error) {
+  console.error("Errore nella richiesta AI:", error.response?.data || error.message);
+  res.json({
+    version: "1.0",
+    response: {
+      outputSpeech: {
+        type: "PlainText",
+        text: "Mi dispiace, non riesco a rispondere ora."
+      },
+      shouldEndSession: false
     }
+  });
+}
+
+    
   } else {
     res.json({
       version: "1.0",
